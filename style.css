@@ -1,1 +1,55 @@
 /* TODO(you): Write the CSS to finish the assignment! */
+.choice-grid{
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:space-between;
+}
+.choice-grid [data-question-id="one"]{
+	flex-grow:0;
+	padding:10px;
+	width:calc(32.5% - 20px);
+	background:#f4f4f4;
+	border:1px solid #dcdcdc;
+	margin-bottom:20px;
+}
+.choice-grid [data-question-id="two"]{
+	flex-grow:0;
+	padding:10px;
+	width:calc(32.5% - 20px);
+	background:#f4f4f4;
+	border:1px solid #dcdcdc;
+	margin-bottom:20px;
+}.choice-grid [data-question-id="three"]{
+	flex-grow:0;
+	padding:10px;
+	width:calc(32.5% - 20px);
+	background:#f4f4f4;
+	border:1px solid #dcdcdc;
+	margin-bottom:20px;
+}
+.image{
+	width:100%;
+	height:auto;
+}
+#result_section{
+	margin:20px 0 20px 0;
+	width:calc(100% - 40px);
+	padding:20px;
+	display:none;
+}
+#result_title{
+	margin-bottom:18px;
+	font-size:2em;
+	font-weight:bold;
+}
+#result_desc{
+	margin-bottom:18px;
+}
+#restart_btn{
+	background:#cecece;
+	text-align:center;
+	height:50px;
+	line-height:50px;
+	font-weight:bold;
+	font-size:1.5em;
+}
