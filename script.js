@@ -2,200 +2,255 @@
 
 // You can access the RESULTS_MAP from "constants.js" in this file since
 // "constants.js" has been included before "script.js" in index.html.
-var choice1=undefined
-var choice2=undefined
-var choice3=undefined
-var lock=false
-var dogs=[]
-var beds=[]
-var toys=[]
-var result=document.getElementById("result_section")
+
+var dog = []
+var bed = []
+var toy = []
+var flag = false
+var checkbox1 = undefined
+var checkbox2 = undefined
+var checkbox3 = undefined
+var restart = document.getElementById("restart")
 TYPES=["blep","happy","sleeping","dopey","burger","cart","nerd","shy","sleepy"]
 
-init()
+__init__()
 
-function init()
+function __init__()
 {
-	Array.from(document.getElementsByClassName("choice-grid")[0].children).forEach(function(item){
-		dogs.push(item)
+	Array.from(document.getElementsByClassName("choice-grid")[0].children).forEach(function(item)
+	{
+		dog.push(item)
 		let attr=item.getAttribute("data-choice-id")
-		item.addEventListener("click",function(){
-			handler(1,attr)
-			})
+		item.addEventListener("click",function()
+		{
+			handler(1, attr)
+		})
 	})
-	Array.from(document.getElementsByClassName("choice-grid")[1].children).forEach(function(item){
-		beds.push(item)
+	Array.from(document.getElementsByClassName("choice-grid")[1].children).forEach(function(item)
+	{
+		bed.push(item)
 		let attr=item.getAttribute("data-choice-id")
-		item.addEventListener("click",function(){
-			handler(2,attr)
-			})
+		item.addEventListener("click",function()
+		{
+			handler(2, attr)
+		})
 	})
-	Array.from(document.getElementsByClassName("choice-grid")[2].children).forEach(function(item){
-		toys.push(item)
+	Array.from(document.getElementsByClassName("choice-grid")[2].children).forEach(function(item)
+	{
+		toy.push(item)
 		let attr=item.getAttribute("data-choice-id")
-		item.addEventListener("click",function(){
-			handler(3,attr)
-			})
+		item.addEventListener("click",function()
+		{
+			handler(3, attr)
+		})
 	})
 
-	window.addEventListener("resize",function(){
+	window.addEventListener("resize",function()
+	{
 		resize(window.outerWidth)
-		})
+	})
 }
 
 function resize(width)
 {
-	if(width>=700)
+	if(width >= 700)
 	{
-		document.getElementsByTagName("article")[0].style.width="700px"
-		document.getElementById("yayinternet").style.display="flex"
-		dogs.forEach(function(item){
+		document.getElementsByTagName("article")[0].style.width = "700px"
+		document.getElementById("yayinternet").style.display = "flex"
+		
+		dog.forEach(function(item)
+		{
+			item.style.width="calc(32.5% - 20px)"
+		})
+		
+		bed.forEach(function(item)
+		{
+			item.style.width="calc(32.5% - 20px)"
+		})
+			
+		toy.forEach(function(item)
+		{
+			item.style.width="calc(32.5% - 20px)"
+		})
+	}
+	
+	else if(width<700 && width>=500)
+	{
+		document.getElementsByTagName("article")[0].style.width = "95%"
+		document.getElementById("yayinternet").style.display = "none"
+		
+		dog.forEach(function(item)
+		{
 			item.style.width="calc(32.5% - 20px)"
 			})
-		beds.forEach(function(item){
+			
+		bed.forEach(function(item)
+		{
 			item.style.width="calc(32.5% - 20px)"
 			})
-		toys.forEach(function(item){
+			
+		toy.forEach(function(item)
+		{
 			item.style.width="calc(32.5% - 20px)"
 			})
 	}
-	else if(width<700&&width>=500)
-	{
-		document.getElementsByTagName("article")[0].style.width="95%"
-		document.getElementById("yayinternet").style.display="none"
-		dogs.forEach(function(item){
-			item.style.width="calc(32.5% - 20px)"
-			})
-		beds.forEach(function(item){
-			item.style.width="calc(32.5% - 20px)"
-			})
-		toys.forEach(function(item){
-			item.style.width="calc(32.5% - 20px)"
-			})
-	}
+	
 	else if(width<500)
 	{
-		document.getElementsByTagName("article")[0].style.width="95%"
-		document.getElementById("yayinternet").style.display="none"
-		dogs.forEach(function(item){
+		document.getElementsByTagName("article")[0].style.width = "95%"
+		document.getElementById("yayinternet").style.display = "none"
+		
+		dog.forEach(function(item)
+		{
 			item.style.width="calc(49% - 20px)"
 			})
-		beds.forEach(function(item){
+			
+		bed.forEach(function(item)
+		{
 			item.style.width="calc(49% - 20px)"
 			})
-		toys.forEach(function(item){
+			
+		toy.forEach(function(item)
+		{
 			item.style.width="calc(49% - 20px)"
 			})
 	}
 }
 
-function handler(id,ch)
+function handler(id, ch)
 {
-	if(lock)
+	if(flag)
 		return
-	setChoice(id,ch)
-	if(id===1)
+	
+	setChoice(id, ch)
+	
+	if(id === 1)
 	{
-		dogs.forEach(function(item){
+		dog.forEach(function(item)
+		{
+			item.style.opacity = 0.6
+			item.style.background = "#f4f4f4"
+			item.children[1].src = "images/unchecked.png"
+		})
+		
+		let id=TYPES.indexOf(ch)
+		let sel = dog[id]
+		sel.style.opacity = 1.0
+		sel.style.background = "#cfe3ff"
+		sel.children[1].src = "images/checked.png"
+	}
+	
+	else if(id === 2)
+	{
+		bed.forEach(function(item){
 			item.style.opacity=0.6
 			item.style.background="#f4f4f4"
 			item.children[1].src="images/unchecked.png"
 		})
-		let id=TYPES.indexOf(ch)
-		let sel=dogs[id]
-		sel.style.opacity=1.0
-		sel.style.background="#cfe3ff"
-		sel.children[1].src="images/checked.png"
+		let id = TYPES.indexOf(ch)
+		let sel = bed[id]
+		sel.style.opacity = 1.0
+		sel.style.background = "#cfe3ff"
+		sel.children[1].src = "images/checked.png"
 	}
-	else if(id===2)
+	
+	else if(id === 3)
 	{
-		beds.forEach(function(item){
+		toy.forEach(function(item){
 			item.style.opacity=0.6
 			item.style.background="#f4f4f4"
 			item.children[1].src="images/unchecked.png"
 		})
-		let id=TYPES.indexOf(ch)
-		let sel=beds[id]
-		sel.style.opacity=1.0
-		sel.style.background="#cfe3ff"
-		sel.children[1].src="images/checked.png"
+		
+		let id = TYPES.indexOf(ch)
+		let sel = toy[id]
+		sel.style.opacity = 1.0
+		sel.style.background = "#cfe3ff"
+		sel.children[1].src = "images/checked.png"
 	}
-	else if(id===3)
+	
+	if(checkbox1 !== undefined&&checkbox2 !== undefined&&checkbox3 !== undefined)
 	{
-		toys.forEach(function(item){
-			item.style.opacity=0.6
-			item.style.background="#f4f4f4"
-			item.children[1].src="images/unchecked.png"
-		})
-		let id=TYPES.indexOf(ch)
-		let sel=toys[id]
-		sel.style.opacity=1.0
-		sel.style.background="#cfe3ff"
-		sel.children[1].src="images/checked.png"
-	}
-	if(choice1!==undefined&&choice2!==undefined&&choice3!==undefined)
-	{
-		lock=true
+		flag=true
 		showResult()
 	}
 }
 
 function clear()
 {
-	dogs.forEach(function(item){
+	dog.forEach(function(item)
+	{
 		item.style.opacity=1.0
 		item.style.background="#f4f4f4"
 		item.children[1].src="images/unchecked.png"
 	})
-	beds.forEach(function(item){
+	
+	bed.forEach(function(item)
+	{
 		item.style.opacity=1.0
 		item.style.background="#f4f4f4"
 		item.children[1].src="images/unchecked.png"
 	})
-	toys.forEach(function(item){
+	
+	toy.forEach(function(item)
+	{
 		item.style.opacity=1.0
 		item.style.background="#f4f4f4"
 		item.children[1].src="images/unchecked.png"
 	})
-	lock=false
-	choice1=undefined
-	choice2=undefined
-	choice3=undefined
+	
+	flag = false
+	checkbox1 = undefined
+	checkbox2 = undefined
+	checkbox3 = undefined
+	
 	document.getElementById("q1").scrollIntoView({behavior:"smooth"})
-	result.style.display="none"
+	restart.style.display="none"
 }
 
-function setChoice(qid,ch)
+function setChoice(qid, ch)
 {
-	if(qid===1)
-		choice1=ch
-	else if(qid===2)
-		choice2=ch
-	else if(qid===3)
-		choice3=ch
+	if(qid === 1)
+	{
+		checkbox1 = ch
+	}
+	
+	else if(qid === 2)
+	{
+		checkbox2 = ch
+	}
+	
+	else if(qid === 3)
+	{
+		checkbox3 = ch
+	}
 }
 
 function mouseOver()
 {
-	document.getElementById("restart_btn").style.background="#cecece"
+	document.getElementById("restart_button").style.background = "#cecece"
 }
+
 function mouseOut()
 {
-	document.getElementById("restart_btn").style.background="#e0e0e0"
+	document.getElementById("restart_button").style.background = "#e0e0e0"
 }
+
 function showResult()
 {
-	result.style.display="block"
-	if(choice2===choice3)
+	restart.style.display = "block"
+	if(checkbox2 === checkbox3)
 	{
-		document.getElementById("result_title").innerHTML="You got: "+RESULTS_MAP[choice2].title
-		document.getElementById("result_desc").innerHTML=RESULTS_MAP[choice2].contents
+		document.getElementById("restart_info").innerHTML = "You got: " + RESULTS_MAP[checkbox2].title
+		document.getElementById("restart_space").innerHTML=RESULTS_MAP[checkbox2].contents
 	}
+	
 	else
 	{
-		document.getElementById("result_title").innerHTML="You got: "+RESULTS_MAP[choice1].title
-		document.getElementById("result_desc").innerHTML=RESULTS_MAP[choice1].contents
+		document.getElementById("restart_info").innerHTML = "You got: " + RESULTS_MAP[checkbox1].title
+		document.getElementById("restart_space").innerHTML=RESULTS_MAP[checkbox1].contents
 	}
-	result.children[2].addEventListener("click",function(){clear()})
-	result.scrollIntoView({behavior:"smooth"})
+	
+	restart.children[2].addEventListener("click", function(){clear()})
+	restart.scrollIntoView({behavior:"smooth"})
 }
