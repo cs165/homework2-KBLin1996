@@ -11,7 +11,7 @@ var checkbox1 = undefined
 var checkbox2 = undefined
 var checkbox3 = undefined
 var restart = document.getElementById("restart")
-TYPES=["blep","happy","sleeping","dopey","burger","cart","nerd","shy","sleepy"]
+TYPES=["blep", "happy", "sleeping", "dopey", "burger", "cart", "nerd", "shy", "sleepy"]
 
 __init__()
 
