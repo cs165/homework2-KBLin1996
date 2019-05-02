@@ -12,30 +12,38 @@ const MATCH_LIST = {
 
 function transformTextNodes(node) {
 	// TODO(you): Implement this function! See HW spec for details.
-	if(node.nodeName==="SCRIPT"||node.nodeName==="STYLE")
-		return
 	
-	console.log(node.nodeName+' '+node.nodeValue)
+	if(node.nodeName === "SCRIPT" || node.nodeName === "STYLE")
+	{
+		return
+	}
 	
 	if(node.nodeValue!=null)
 	{
-		let txtArray=node.nodeValue.split(' ')
-		for(let i=0,l=txtArray.length;i<l;i++)
+		let vocab = node.nodeValue.split(' ')
+		for(let i=0, len=vocab.length; i<len; i++)
 		{
-			txtArray[i]=txtArray[i].replace('\n','')
-			txtArray[i]=txtArray[i].trim()
-			if(txtArray[i] in MATCH_LIST)
-				txtArray[i]=MATCH_LIST[txtArray[i]]
+			vocab[i] = vocab[i].replace('\n','')
+			vocab[i] = vocab[i].trim()
+			
+			if(vocab[i] in MATCH_LIST)
+			{
+				vocab[i]=MATCH_LIST[vocab[i]]
+			}
 		}
-		node.nodeValue=txtArray.join(' ')
+		node.nodeValue = vocab.join(' ')
 	}
-	let children=node.childNodes
-	for(let i=0,l=children.length;i<l;i++)
-		transformTextNodes(children[i])
+	
+	let transfer = node.childNodes
+	
+	for(let i=0, len=transfer.length; i<len; i++)
+	{
+		transformTextNodes(transfer[i])
+	}
 }
 
 transformTextNodes(document.body);
 
 // Log statement to test that the extension loaded properly.
-console.log('Evil extension loaded!');
-console.log('Extension unloaded!')
+console.log('Done! Evil Extension is well loaded!');
+console.log('Extension Uploaded!')
