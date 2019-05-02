@@ -39,7 +39,6 @@ function onMessage(gardeningInProgress) {
 				tweets[i].setAttribute('inprogress','true');
 			}
 		}
-		console.log('all tweets hacked');
 
 		var code = "const POSITIVE_MESSAGES = ['Never gonna give you up','Never gonna let you down','Never gonna run around','Never gonna desert you','Never gonna make you cry','Never gonna say goodbye','Never gonna tell a lie','Never gonna hurt you'];\n"+
 		"function over(tweet){if(tweet.getAttribute('inprogress')=='false')return;const curserUrl="+"'"+curserUrl+"'"+";const backUrl="+"'"+backUrl+"'"+";tweet.style.cursor='url('+curserUrl+')4 12,auto';tweet.style.backgroundImage='url('+backUrl+')';tweet.style.opacity='0.8';}\n"+
@@ -59,7 +58,6 @@ function onMessage(gardeningInProgress) {
 						tweets[i].setAttribute('inprogress','true');
 					}
 				}
-				console.log('all tweets hacked');
 			});
 		}+')();';
 		if(document.getElementById('ajaxLoadDetect') == null)
@@ -104,11 +102,15 @@ function out(tweet)
 function gardening(e,tweet)
 {
 	if(tweet.getAttribute('inprogress') == 'false')
+	{
 		return;
+	}
 	e.stopPropagation();
 	
 	if(tweet.getAttribute('gardened') == 'true')
+	{
 		return;
+	}
 	let children = tweet.children;
 	
 	for(let i=0,cl=children.length;i<cl;i++)
